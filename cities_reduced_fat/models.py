@@ -65,7 +65,7 @@ class Region(models.Model):
     """
     Region model.
     """
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200, db_index=True)
     name_ascii = models.CharField(max_length=200, blank=True, db_index=True)
     slug = autoslug.AutoSlugField(populate_from='name_ascii', unique_with=('country__name',))
 

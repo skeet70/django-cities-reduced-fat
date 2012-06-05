@@ -176,7 +176,7 @@ It is possible to force the import of files which weren't downloaded using the
                 region = Region.objects.get(**kwargs)
             except Region.DoesNotExist:
                 region = Region(**kwargs)
-            region.name = items[1]
+            region.name = items[2]
             region.save()
 
     def _normalize_search_names(self, search_names):
