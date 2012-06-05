@@ -10,10 +10,10 @@ import unicodedata
 from django.core.management.base import BaseCommand
 from django.utils.encoding import force_unicode
 
-from ...exceptions import *
-from ...signals import *
-from ...models import *
-from ...settings import *
+from ...exceptions import InvalidItems
+from ...signals import city_items_pre_import
+from ...models import Country, Region, City
+from ...settings import DATA_DIR, SOURCES, COUNTRY_SOURCES, REGION_SOURCES, CITY_SOURCES
 
 
 class Command(BaseCommand):
@@ -23,11 +23,11 @@ class Command(BaseCommand):
                               [--force countries.txt cities.txt ...]
     '''.strip()
     help = '''
-Download all files in CITIES_LIGHT_COUNTRY_SOURCES if they were updated or if
+Download all files in CITIES_REDUCED_FAT_COUNTRY_SOURCES if they were updated or if
 --force-all option was used.
 Import country data if they were downloaded or if --force-import-all was used.
 
-Same goes for CITIES_LIGHT_CITY_SOURCES.
+Same goes for CITIES_REDUCED_FAT_CITY_SOURCES.
 
 It is possible to force the download of some files which have not been updated
 on the server:
@@ -40,7 +40,7 @@ It is possible to force the import of files which weren't downloaded using the
     manage.py --force-import cities15000.txt countryInfo.txt
     '''.strip()
 
-    logger = logging.getLogger('cities_light')
+    logger = logging.getLogger('cities_reduced_fat')
 
     option_list = BaseCommand.option_list + (
         optparse.make_option('--force-import-all', action='store_true',
@@ -92,6 +92,8 @@ It is possible to force the import of files which weren't downloaded using the
                     self.city_import(destination_file_path)
                 elif url in COUNTRY_SOURCES:
                     self.country_import(destination_file_path)
+                if url in REGION_SOURCES:
+                    self.region_import(destination_file_path)
 
     def download(self, url, path, force=False):
         remote_file = urllib.urlopen(url)
@@ -166,6 +168,17 @@ It is possible to force the import of files which weren't downloaded using the
             country.tld = items[9][1:]  # strip the leading dot
             country.save()
 
+    def region_import(self, file_path):
+        for items in self.parse(file_path):
+            code2, id = items[0].split('.')
+            kwargs = dict(code=id, country=self._get_country(code2))
+            try:
+                region = Region.objects.get(**kwargs)
+            except Region.DoesNotExist:
+                region = Region(**kwargs)
+            region.name = items[1]
+            region.save()
+
     def _normalize_search_names(self, search_names):
         if isinstance(search_names, str):
             search_names = force_unicode(search_names)
@@ -180,7 +193,8 @@ It is possible to force the import of files which weren't downloaded using the
             except InvalidItems:
                 continue
 
-            kwargs = dict(name=items[1], country=self._get_country(items[8]))
+            country = self._get_country(items[8])
+            kwargs = dict(name=items[1], country=country)
 
             try:
                 city = City.objects.get(**kwargs)
@@ -210,6 +224,10 @@ It is possible to force the import of files which weren't downloaded using the
             if not city.geoname_id:
                 # city may have been added manually
                 city.geoname_id = items[0]
+                try:
+                    city.region = Region.objects.get(country=country, code=items[10])
+                except Region.DoesNotExist:
+                    pass
                 save = True
 
             if save:

@@ -1,10 +1,10 @@
 """
-Couples cities_light and django-ajax-selects.
+Couples cities_reduced_fat and django-ajax-selects.
 
 Register the lookups in settings.AJAX_LOOKUP_CHANNELS, add::
 
-    'cities_light_country': ('cities_light.lookups', 'CountryLookup'),
-    'cities_light_city': ('cities_light.lookups', 'CityLookup'),
+    'cities_light_country': ('cities_reduced_fat.lookups', 'CountryLookup'),
+    'cities_light_city': ('cities_reduced_fat.lookups', 'CityLookup'),
 """
 
 from ajax_select import LookupChannel

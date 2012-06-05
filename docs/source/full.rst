@@ -4,7 +4,7 @@ Simple django app
 Settings
 --------
 
-.. automodule:: cities_light.settings
+.. automodule:: cities_reduced_fat.settings
    :members:
 
 Models
@@ -12,7 +12,7 @@ Models
 
 See source for details.
 
-.. automodule:: cities_light.models
+.. automodule:: cities_reduced_fat.models
    :members:
 
 Admin
@@ -20,5 +20,5 @@ Admin
 
 See source for details.
 
-.. automodule:: cities_light.admin
+.. automodule:: cities_reduced_fat.admin
    :members:

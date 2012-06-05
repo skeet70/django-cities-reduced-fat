@@ -1,5 +1,5 @@
 """
-Widgets that couple cities_light and autocomplete_light.
+Widgets that couple cities_reduced_fat and autocomplete_light.
 """
 
 from django.utils.translation import ugettext_lazy as _

@@ -5,27 +5,29 @@ import os
 # Used for the long_description. It's nice, because now 1) we have a top level
 # README file and 2) it's easier to type in the README file than to put a raw
 # string in below ...
+
+
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name='django-cities-light',
-    version='1.8',
-    description='Simple alternative to django-cities',
-    author='James Pic',
-    author_email='jamespic@gmail.com',
-    url='https://github.com/yourlabs/django-cities-light',
+    name='django-cities-reduced-fat',
+    version='1.0',
+    description='Region alternative to django-cities-reduced-fat',
+    author='Ryan Murphy',
+    author_email='omurcada@gmail.com',
+    url='https://github.com/skeet70/django-cities-reduced-fat',
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
     long_description=read('README.rst'),
-    license = 'MIT',
-    keywords = 'django cities countries postal codes',
+    license='MIT',
+    keywords='django cities countries postal codes location region',
     install_requires=[
         'django',
         'django_autoslug',
     ],
-    classifiers = [
+    classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -38,4 +40,3 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ]
 )
-

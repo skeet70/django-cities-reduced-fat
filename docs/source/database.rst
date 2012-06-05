@@ -6,22 +6,22 @@ Data install or update
 
 Populate your database with command::
 
-    ./manage.py cities_light
+    ./manage.py cities_reduced_fat
 
 By default, this command attempts to do the least work possible, update what is
 necessary only. If you want to disable all these optimisations/skips, use --force-all.
 
 This command is well documented, consult the help with::
     
-    ./manage.py help cities_light
+    ./manage.py help cities_reduced_fat
 
 Signals
 -------
 
-.. automodule:: cities_light.signals
+.. automodule:: cities_reduced_fat.signals
    :members:
 
-.. automodule:: cities_light.exceptions
+.. automodule:: cities_reduced_fat.exceptions
    :members:
 
 Configure logging
@@ -29,7 +29,7 @@ Configure logging
 
 This command is made to be compatible with background usage like from cron, to
 keep the database fresh. So it doesn't do direct output. To get output from
-this command, simply configure a handler and formatter for `cities_light`
+this command, simply configure a handler and formatter for `cities_reduced_fat`
 logger. For example::
 
     LOGGING = {
@@ -48,7 +48,7 @@ logger. For example::
             },
         },
         'loggers': {
-            'cities_light': {
+            'cities_reduced_fat': {
                 'handlers':['console'],
                 'propagate': True,
                 'level':'DEBUG',

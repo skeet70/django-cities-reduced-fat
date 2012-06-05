@@ -1,5 +1,5 @@
 """
-Couple djangorestframework and cities_light.
+Couple djangorestframework and cities_reduced_fat.
 
 It defines a urlpatterns variables, with the following urls:
 
@@ -11,7 +11,7 @@ It defines a urlpatterns variables, with the following urls:
 If djangorestframework is installed, all you have to do is add this url
 include::
 
-    url(r'^cities_light/api/', include('cities_light.contrib.restframework')),
+    url(r'^cities_reduced_fat/api/', include('cities_reduced_fat.contrib.restframework')),
 
 And there you have a nice API.
 """

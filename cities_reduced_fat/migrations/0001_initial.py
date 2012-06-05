@@ -20,7 +20,7 @@ class Migration(SchemaMigration):
             ('tld', self.gf('django.db.models.fields.CharField')(db_index=True, max_length=5, blank=True)),
             ('geoname_id', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
         ))
-        db.send_create_signal('cities_light', ['Country'])
+        db.send_create_signal('cities_reduced_fat', ['Country'])
 
         # Adding model 'City'
         db.create_table('cities_light_city', (
@@ -29,9 +29,9 @@ class Migration(SchemaMigration):
             ('name_ascii', self.gf('django.db.models.fields.CharField')(max_length=200, db_index=True)),
             ('slug', self.gf('autoslug.fields.AutoSlugField')(unique_with=(), max_length=50, populate_from=None)),
             ('geoname_id', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
-            ('country', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities_light.Country'])),
+            ('country', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities_reduced_fat.Country'])),
         ))
-        db.send_create_signal('cities_light', ['City'])
+        db.send_create_signal('cities_reduced_fat', ['City'])
 
         # Adding unique constraint on 'City', fields ['country', 'name']
         db.create_unique('cities_light_city', ['country_id', 'name'])
@@ -49,16 +49,16 @@ class Migration(SchemaMigration):
 
 
     models = {
-        'cities_light.city': {
+        'cities_reduced_fat.city': {
             'Meta': {'ordering': "['name']", 'unique_together': "(('country', 'name'),)", 'object_name': 'City'},
-            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cities_light.Country']"}),
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cities_reduced_fat.Country']"}),
             'geoname_id': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
             'name_ascii': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
             'slug': ('autoslug.fields.AutoSlugField', [], {'unique_with': '()', 'max_length': '50', 'populate_from': 'None'})
         },
-        'cities_light.country': {
+        'cities_reduced_fat.country': {
             'Meta': {'ordering': "['name']", 'object_name': 'Country'},
             'code2': ('django.db.models.fields.CharField', [], {'max_length': '2', 'unique': 'True', 'null': 'True', 'blank': 'True'}),
             'code3': ('django.db.models.fields.CharField', [], {'max_length': '3', 'unique': 'True', 'null': 'True', 'blank': 'True'}),
@@ -72,4 +72,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['cities_light']
+    complete_apps = ['cities_reduced_fat']

@@ -77,17 +77,17 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/django-cities-light.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/django-cities-reduced-fat.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/django-cities-light.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/django-cities-reduced-fat.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/django-cities-light"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/django-cities-light"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/django-cities-reduced-fat"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/django-cities-reduced-fat"
 	@echo "# devhelp"
 
 epub:

@@ -2,14 +2,14 @@ language: python
 python:
   - "2.7"
 env:
-  - DJANGO=1.4
+  - DJANGO=1.3.1
 install:
   - pip install -q Django==$DJANGO --use-mirrors
   - pip install pep8 --use-mirrors
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install -q -e . --use-mirrors
 before_script:
-  - "pep8 --exclude=tests,migrations cities_light"
+  - "pep8 --exclude=tests,migrations cities_reduced_fat"
   - pyflakes -x W src
 script:
   - python setup.py test

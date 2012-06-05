@@ -1,5 +1,5 @@
 """
-Channels that couple autocomplete_light and cities_light.
+Channels that couple autocomplete_light and cities_reduced_fat.
 """
 
 import autocomplete_light

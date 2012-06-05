@@ -1,5 +1,5 @@
 """
-Couples djangorestframework and cities_light.
+Couples djangorestframework and cities_reduced_fat.
 """
 
 import autocomplete_light
@@ -11,16 +11,16 @@ from autocomplete_light_channels import CityChannelMixin
 
 class ApiChannelMixin(object):
     """
-    Defines model_for_source_url for cities_light.contrib.restframework.
+    Defines model_for_source_url for cities_reduced_fat.contrib.restframework.
     """
     def model_for_source_url(self, url):
         """
         Return the appropriate model for the urls defined by
-        cities_light.contrib.restframework.urlpatterns.
+        cities_reduced_fat.contrib.restframework.urlpatterns.
         """
-        if 'cities_light/city/' in url:
+        if 'cities_reduced_fat/city/' in url:
             return City
-        elif 'cities_light/country/' in url:
+        elif 'cities_reduced_fat/country/' in url:
             return Country
 
 
@@ -28,7 +28,7 @@ class RemoteCityChannel(CityChannelMixin, ApiChannelMixin,
     autocomplete_light.RemoteChannelBase):
     """
     Remote channel for City that is compatible with
-    cities_light.contrib.restframework.
+    cities_reduced_fat.contrib.restframework.
     """
 
     def get_source_url_data(self, limit):
@@ -47,6 +47,6 @@ class RemoteCountryChannel(ApiChannelMixin,
     autocomplete_light.RemoteChannelBase):
     """
     Remote channel for Country that is compatible with
-    cities_light.contrib.restframework.
+    cities_reduced_fat.contrib.restframework.
     """
     pass

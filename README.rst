@@ -1,15 +1,18 @@
-.. image:: https://secure.travis-ci.org/yourlabs/django-cities-light.png?branch=master
-
-django-cities-light -- *Simple django-cities alternative*
+django-cities-reduced-fat -- *Simple django-cities alternative*
 =========================================================
 
-This add-on provides models and commands to import country/city data into your
+This appplication is a slightly modified version of django-cities-light that includes
+regions. Most all the django-cities-light documentation still applies, in most instances
+just replace light with reduced fat. File an issue for any bugs you come across!
+
+This add-on provides models and commands to import country/region/city data into your
 database.
 The data is pulled from `GeoNames
 <http://www.geonames.org/>`_ and contains:
 
   - country names
   - city names
+  - admin1 region names
 
 Spatial query support is not required by this application.
 
@@ -22,20 +25,16 @@ database, you should use
 Upgrade
 -------
 
-Se CHANGELOG.
+See CHANGELOG.
 
 Installation
 ------------
 
-Install django-cities-light::
+The development version::
 
-    pip install django-cities-light
+    pip install -e git+git@github.com:skeet70/django-cities-reduced-fat.git#egg=cities_reduced_fat
 
-Or the development version::
-
-    pip install -e git+git@github.com:yourlabs/django-cities-light.git#egg=cities_light
-
-Add `cities_light` to your `INSTALLED_APPS`.
+Add `cities_reduced_fat` to your `INSTALLED_APPS`.
 
 Now, run syncdb, it will only create tables for models that are not disabled::
 
@@ -48,11 +47,11 @@ Data update
 
 Finally, populate your database with command::
 
-    ./manage.py cities_light
+    ./manage.py cities_reduced_fat
 
 This command is well documented, consult the help with::
 
-    ./manage.py help cities_light
+    ./manage.py help cities_reduced_fat
 
 Resources
 ---------
@@ -60,11 +59,8 @@ Resources
 You could subscribe to the mailing list ask questions or just be informed of
 package updates.
 
-- `Mailing list graciously hosted
-  <http://groups.google.com/group/yourlabs>`_ by `Google
-  <http://groups.google.com>`_
 - `Git graciously hosted
-  <https://github.com/yourlabs/django-cities-light/>`_ by `GitHub
+  <https://github.com/skeet70/django-cities-reduced-fat/>`_ by `GitHub
   <http://github.com>`_,
 - `Documentation graciously hosted
   <http://django-cities-light.rtfd.org>`_ by `RTFD
