@@ -73,6 +73,7 @@ class Region(models.Model):
     country = models.ForeignKey(Country)
 
     class Meta:
+        verbose_name_plural = _(u'regions')
         ordering = ['name']
         unique_together = (('code', 'country'))
 
