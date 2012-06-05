@@ -75,7 +75,6 @@ class Region(models.Model):
     class Meta:
         ordering = ['name']
         unique_together = (('code', 'country'))
-        abstract = True
 
     def __unicode__(self):
         return u'{}, {}'.format(force_unicode(self.name), self.parent)
