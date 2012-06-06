@@ -1,7 +1,7 @@
 DEPRECATED
 ===========
 
-Please use the original [here](https://github.com/skeet70/django-cities-reduced-fat/) as they
+Please use the original <https://github.com/yourlabs/django-cities-light/> as they
 pulled these changes in. This repo kept up for posterity.
 
 - `Git graciously hosted
